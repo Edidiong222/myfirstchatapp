@@ -23,7 +23,11 @@ if (existingUser){
 const hashedPassword = await bcrypt.hash(createUserDto.password, 10)
 const userPayload = this.userRepo.create({...createUserDto, password:hashedPassword})
 
-return await this.userRepo.save(userPayload)
+const savedUser = await this.userRepo.save(userPayload)
+
+const {password, ...result} =savedUser
+
+return result
 
  }
 

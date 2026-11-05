@@ -5,13 +5,14 @@ import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { UsersModule } from 'src/users/users.module';
 import { AuthController } from './auth.controller';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports:[UsersModule, JwtModule.register({
     secret:"qwertyuiop1234567890",
-    signOptions:{expiresIn:'1m'}
+    signOptions:{expiresIn:'40d'}
   })],
-  providers: [AuthService],
+  providers: [AuthService,JwtStrategy],
   controllers: [AuthController],
   exports:[AuthService]
 })

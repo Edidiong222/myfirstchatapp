@@ -36,7 +36,7 @@ return result
   }
 
  async findOne(email:string){
-  const user = await this.userRepo.findOneBy({email})
+  const user = await this.userRepo.findOne({where:{email}})
   if(!user){
     throw new NotFoundException("This user does not exist")
   }
